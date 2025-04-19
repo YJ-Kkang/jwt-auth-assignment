@@ -1,7 +1,6 @@
 package com.yj.jwtauth.domain.user.dto.response;
 
 import com.yj.jwtauth.common.entity.User;
-import com.yj.jwtauth.domain.user.enums.UserRole;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
