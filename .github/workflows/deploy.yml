@@ -22,7 +22,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         env:
-            JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          JWT_EXPIRATION_TIME: ${{ secrets.JWT_EXPIRATION_TIME }}
 
 
       - name: Copy jar file to EC2
