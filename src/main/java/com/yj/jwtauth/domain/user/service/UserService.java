@@ -9,13 +9,24 @@ import com.yj.jwtauth.domain.user.dto.response.UserResponseDto;
 
 public interface UserService {
 
-	SignupResponseDto userSignup(SignupRequestDto requestDto);
+	SignupResponseDto userSignup(
+		SignupRequestDto requestDto
+	);
 
-	SignupResponseDto adminSignup(SignupRequestDto requestDto);
+	SignupResponseDto adminSignup(
+		SignupRequestDto requestDto
+	);
 
-	SigninResponseDto userOrAdminSignin(SigninRequestDto requestDto);
+	SigninResponseDto userOrAdminSignin(
+		SigninRequestDto requestDto
+	);
 
-	UserResponseDto assignAdminRole(Long userId, RoleUpdateRequestDto roleUpdateRequestDto);
+	UserResponseDto assignAdminRole(
+		Long userId,
+		RoleUpdateRequestDto roleUpdateRequestDto
+	);
 
-	UserResponseDto getMyInfo(Long userId);
+	UserResponseDto getMyInfo(
+		Long userId
+	);
 }
