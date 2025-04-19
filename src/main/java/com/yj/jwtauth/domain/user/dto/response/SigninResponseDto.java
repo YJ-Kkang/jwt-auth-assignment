@@ -7,7 +7,7 @@ import lombok.Getter;
 public class SigninResponseDto {
 
 	@Schema(description = "JWT 토큰", example = "Bearer eyJh7...")
-	private String token;
+	private final String token;
 
 	public SigninResponseDto(String token) {
 		this.token = token;
