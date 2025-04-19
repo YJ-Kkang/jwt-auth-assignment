@@ -25,7 +25,6 @@ jobs:
           JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
           JWT_EXPIRATION_TIME: ${{ secrets.JWT_EXPIRATION_TIME }}
 
-
       - name: Copy jar file to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
