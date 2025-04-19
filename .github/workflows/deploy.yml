@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - master  # 혹은 main
+      - master
 
 jobs:
   deploy:
@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew bootJar
         env:
           JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
           JWT_EXPIRATION_TIME: ${{ secrets.JWT_EXPIRATION_TIME }}
@@ -41,5 +41,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
+            sudo apt-get update && sudo apt-get install -y openjdk-17-jdk
             pkill -f 'java -jar' || true
             nohup java -jar /home/ubuntu/app/*.jar > app.log 2>&1 &
