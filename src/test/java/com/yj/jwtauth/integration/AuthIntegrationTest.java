@@ -18,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.startsWith;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -83,7 +81,7 @@ class AuthIntegrationTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(request)))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.token", startsWith("Bearer ")));
+			.andExpect(jsonPath("$.token").exists());
 	}
 
 	@Test
@@ -145,7 +143,7 @@ class AuthIntegrationTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(dto)))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.roles").value(hasItem("ADMIN")));
+			.andExpect(jsonPath("$.role").value("ADMIN"));
 	}
 
 	@Test
@@ -202,7 +200,8 @@ class AuthIntegrationTest {
 			.andExpect(status().isOk())
 			.andReturn();
 
-		return objectMapper.readTree(result.getResponse().getContentAsString())
+		String token = objectMapper.readTree(result.getResponse().getContentAsString())
 			.get("token").asText();
+		return "Bearer " + token; // "Bearer " 접두사 추가
 	}
 }

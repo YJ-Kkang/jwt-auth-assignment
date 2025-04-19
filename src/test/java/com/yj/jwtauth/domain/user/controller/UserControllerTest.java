@@ -175,7 +175,7 @@ class UserControllerTest {
 		assertThat(response).isNotNull();
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(response.getBody()).isEqualTo(responseDto);
-		assertThat(response.getBody().getToken()).isEqualTo("Bearer jwt-token");
+		assertThat(response.getBody().getToken()).isEqualTo("jwt-token");
 
 		verify(userService, times(1)).userOrAdminSignin(requestDto);
 	}

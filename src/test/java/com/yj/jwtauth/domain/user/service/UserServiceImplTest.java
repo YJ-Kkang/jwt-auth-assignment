@@ -152,7 +152,7 @@ class UserServiceImplTest {
 
 		// then
 		assertThat(result).isNotNull();
-		assertThat(result.getToken()).isEqualTo("Bearer jwt-token");
+		assertThat(result.getToken()).isEqualTo("jwt-token"); // "Bearer " 접두사 제거
 
 		verify(userRepository, times(1)).findByEmail(requestDto.getEmail());
 		verify(passwordEncoder, times(1)).matches(requestDto.getPassword(), user.getPassword());
