@@ -91,13 +91,14 @@ public class JwtAuthenticationFilter implements Filter {
 			DecodedJWT decodedJwt = jwtService.verifyToken(token);
 			String userId = decodedJwt.getSubject();
 			List<String> roles = decodedJwt.getClaim("roles").asList(String.class);
+			List<SimpleGrantedAuthority> authorities = roles.stream()
+			.map(SimpleGrantedAuthority::new)
+			.collect(Collectors.toList());
+
 			String email = decodedJwt.getClaim("email").asString();
 
 			logger.debug("Token verified, userId: {}, roles: {}, email: {}", userId, roles, email);
 
-			List<SimpleGrantedAuthority> authorities = roles.stream()
-				.map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-				.collect(Collectors.toList());
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
 				email,
 				null,

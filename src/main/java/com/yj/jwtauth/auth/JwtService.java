@@ -48,7 +48,7 @@ public class JwtService {
 				.withIssuer("auth0")
 				.withSubject(id.toString())
 				.withClaim("email", email)
-				.withClaim("roles", List.of(role.name()))
+				.withClaim("roles", List.of(role.getRole()))
 				.withIssuedAt(now.toInstant())
 				.withExpiresAt(now.plusMinutes(expirationTime).toInstant())
 				.sign(algorithm);
