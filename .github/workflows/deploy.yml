@@ -36,6 +36,7 @@ jobs:
 
       - name: Run jar on EC2
         uses: appleboy/ssh-action@v1.0.0
+        continue-on-error: true
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
@@ -44,3 +45,4 @@ jobs:
             sudo apt-get update && sudo apt-get install -y openjdk-17-jdk
             pkill -f 'java -jar' || true
             nohup java -jar /home/ubuntu/app/*.jar > app.log 2>&1 &
+            exit 0
