@@ -35,7 +35,7 @@
 - [Git](https://github.com/YJ-Kkang)
 - [블로그](https://velog.io/@yjkang/posts)
 - [유튜브](https://www.youtube.com/@ZenithOfZin)
-- [Email](kyujin995@gmail.com)
+- `Email` : kyujin995@gmail.com
 
 ---
 
